@@ -14,14 +14,17 @@ class MainPresenter<V : MainMvpView>
         BasePresenter<V>(dataManager, compositeDisposable), MainMvpPresenter<V> {
 
     override fun onHomeClicked() {
+        mvpView?.showHomePage()
         mvpView?.showToast("Welcome Home")
     }
 
     override fun onDashboardClicked() {
+        mvpView?.showDashboardPage()
         mvpView?.showToast("Welcome Dash")
     }
 
     override fun onSettingsClicked() {
+        mvpView?.showSettingsPage()
         mvpView?.showToast("Welcome Settings")
     }
 }

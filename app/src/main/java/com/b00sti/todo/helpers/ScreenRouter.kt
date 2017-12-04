@@ -14,15 +14,15 @@ import com.b00sti.todo.utils.inTransaction
 class ScreenRouter {
     companion object {
         fun goToHomePage(fragmentManager: FragmentManager?) {
-            replaceFragment(fragmentManager, HomeFragment.newInstance("home", "frag"))
+            replaceFragment(fragmentManager, HomeFragment.newInstance())
         }
 
         fun goToDashboardPage(fragmentManager: FragmentManager?) {
-            replaceFragment(fragmentManager, DashboardFragment.newInstance("dashboard", "frag"))
+            replaceFragment(fragmentManager, DashboardFragment.newInstance())
         }
 
         fun goToSettingsPage(fragmentManager: FragmentManager?) {
-            replaceFragment(fragmentManager, SettingsFragment.newInstance("settings", "frag"))
+            replaceFragment(fragmentManager, SettingsFragment.newInstance())
         }
 
         fun replaceFragment(fragmentManager: FragmentManager?, fragment: Fragment) {

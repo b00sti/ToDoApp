@@ -9,7 +9,7 @@ import javax.inject.Inject
  */
 open class BasePresenter<V : MvpView>
 @Inject constructor(var dataManager: DataManager,
-                    var compositeDisposable: CompositeDisposable) : MvpPresenter<V> {
+                    private var compositeDisposable: CompositeDisposable) : MvpPresenter<V> {
 
     var mvpView: V? = null
 

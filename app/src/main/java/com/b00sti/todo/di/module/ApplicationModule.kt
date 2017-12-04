@@ -20,7 +20,7 @@ class ApplicationModule(private val application: Application) {
     fun provideContext(): Context = application
 
     @Provides
-    fun provideAppliation(): Application = application
+    fun provideApplication(): Application = application
 
     @Provides
     @Singleton

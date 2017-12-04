@@ -1,6 +1,5 @@
 package com.b00sti.todo.ui.main
 
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import com.b00sti.todo.R
@@ -12,42 +11,48 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainMvpView, OnFragmentInteractionListener {
 
-    override fun onFragmentInteraction(uri: Uri) {
-
-    }
-
     @Inject lateinit var presenter: MainMvpPresenter<MainMvpView>
-
-    override fun doSomething() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                presenter.onHomeClicked()
-                ScreenRouter.goToHomePage(supportFragmentManager)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_dashboard -> {
-                presenter.onDashboardClicked()
-                ScreenRouter.goToDashboardPage(supportFragmentManager)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-                presenter.onSettingsClicked()
-                ScreenRouter.goToSettingsPage(supportFragmentManager)
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         activityComponent.inject(this)
         presenter.onAttach(this)
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.navigation_home -> {
+                presenter.onHomeClicked()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_dashboard -> {
+                presenter.onDashboardClicked()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_notifications -> {
+                presenter.onSettingsClicked()
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
+
+    override fun showHomePage() {
+        ScreenRouter.goToHomePage(supportFragmentManager)
+    }
+
+    override fun showDashboardPage() {
+        ScreenRouter.goToDashboardPage(supportFragmentManager)
+    }
+
+    override fun showSettingsPage() {
+        ScreenRouter.goToSettingsPage(supportFragmentManager)
+    }
+
+    override fun onFragmentInteraction() {
+
     }
 }
